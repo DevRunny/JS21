@@ -5,6 +5,7 @@ const rollback = 4;
 const fullPrice = 5;
 const adaptive = 6;
 
+alert("Приветствую Вас!");
 console.log(
   "Привет консолька!",
   title,
