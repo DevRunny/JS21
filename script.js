@@ -6,7 +6,7 @@ let niceNumbers = numbers.map(Number); // превращаем строки в �
 
 let sum = (previousValue, currentValue) => previousValue * currentValue; // Перемножаем числа в масииве
 
-const result = 1296 ** 3; // Возводим в степень результат
+const result = niceNumbers.reduce(sum) ** 3; // Возводим в степень результат
 
 const strResult = result.toString(); // Переводим результат в строку
 
