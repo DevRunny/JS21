@@ -1,16 +1,19 @@
-const title = 1;
-const screens = 2;
-const screenPrice = 3;
-const rollback = 4;
-const fullPrice = 5;
-const adaptive = 6;
+let title = "JS21";
+console.log(typeof title);
+let screens = "Простые, Сложные, Интерактивные";
+console.log(screens.length);
+let screenPrice = 500;
+console.log("Стоимость верстки экранов " + screenPrice + " рублей");
+let rollback = 26;
+console.log(rollback);
+let fullPrice = 14990;
+console.log(typeof fullPrice);
+let adaptive = true;
+console.log(typeof adaptive);
 
-alert("Приветствую Вас!");
-console.log(
-  "Привет консолька!",
-  title,
-  screens,
-  screenPrice,
-  rollback,
-  fullPrice
-);
+console.log("Стоимость верстки экранов " + screenPrice + " рублей");
+console.log("Стоимость создания сайта " + fullPrice + " рублей");
+
+console.log(screens.toLowerCase(), screens.split(" "));
+
+console.log(fullPrice * (rollback / 100));
