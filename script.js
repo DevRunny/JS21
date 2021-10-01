@@ -10,7 +10,11 @@ const result = niceNumbers.reduce(sum) ** 3; // Возводим в степен
 
 const strResult = result.toString(); // Переводим результат в строку
 
+const sliceResult = strResult.slice(0, 2); // Вытаскиваем первые 2 цифры от числа
+
+const numResult = Number(sliceResult); // Преобразуем из строки в числовой тип
+
 console.log(niceNumbers); // Массив чисел
 console.log(niceNumbers.reduce(sum)); // Перемноженные числа
 console.log(result); // Число возведенное в степень 3
-console.log(strResult.slice(0, 2)); // Вывод в консоль первые 2 цифры полученного числа
+console.log(numResult); // Вывод в консоль первые 2 цифры полученного числа
