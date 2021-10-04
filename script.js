@@ -1,9 +1,7 @@
 "use strict";
 
 //Первая часть задания
-const lang = "ru" && "en";
-
-let randomLang = Math.floor(Math.random() * lang.length);
+const lang = prompt("Выбери язык:", "ru, en");
 
 const ruMassive = [
   "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье",
@@ -14,20 +12,20 @@ const enMassive = [
 ];
 
 // Решение else if
-if (randomLang === 0) {
+if (lang === "ru") {
   console.log(ruMassive);
-} else if (randomLang === 1) {
+} else if (lang === "en") {
   console.log(enMassive);
 } else {
   console.log("Ошибка");
 }
 
 // Решение switch case
-switch (randomLang) {
-  case 0:
+switch (lang) {
+  case "ru":
     console.log(ruMassive);
     break;
-  case 1:
+  case "en":
     console.log(enMassive);
     break;
 
@@ -38,9 +36,9 @@ switch (randomLang) {
 
 // Решение без if else
 const langResult =
-  randomLang === 0
+  lang === "ru"
     ? console.log(ruMassive)
-    : randomLang === 1
+    : lang === "en"
     ? console.log(enMassive)
     : console.log("Ошибка");
 
