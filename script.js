@@ -42,7 +42,7 @@ const langResult =
     ? console.log(ruMassive)
     : randomLang === 1
     ? console.log(enMassive)
-    : "Ошибка";
+    : console.log("Ошибка");
 
 // Вторая часть задания
 let namePerson = prompt("Введите имя!");
