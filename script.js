@@ -26,12 +26,6 @@ const asking = function () {
     screenPrice = prompt("Сколько будет стоить данная работа?");
   } while (!isNumber(screenPrice));
 
-  // screenPrice = prompt("Сколько будет стоить данная работа?");
-
-  // while (!isNumber(screenPrice)) {
-  //   screenPrice = prompt("Сколько будет стоить данная работа?");
-  // }
-
   adaptive = confirm("Нужен ли адаптив на сайте?");
 };
 
@@ -55,22 +49,28 @@ const getRollbackMessage = (price) => {
 };
 
 const getAllServicePrices = function () {
-  let sum = 0;
+  let sum1 = 0;
+  let sum2 = 0;
 
   for (let i = 0; i < 2; i++) {
     if (i === 0) {
-      service1 = prompt("Какой дополнительный тип услуги нужен?");
+      service1 = prompt("1.Какой дополнительный тип услуги нужен?");
+      do {
+        sum1 = +prompt("Сколько это будет стоить?");
+      } while (!isNumber(sum1));
     } else if (i === 1) {
-      service2 = prompt("Какой дополнительный тип услуги нужен?");
+      service2 = prompt("2.Какой дополнительный тип услуги нужен?");
+      do {
+        sum2 = +prompt("Сколько это будет стоить?");
+      } while (!isNumber(sum2));
     }
-
-    sum += +prompt("Сколько это будет стоить?");
   }
-  return sum;
+
+  return Number(sum1 + sum2);
 };
 
-function getFullPrice(scrnPrice, servicePrice) {
-  return scrnPrice + servicePrice; //Расчет полной суммы с использованием callback
+function getFullPrice() {
+  return Number(screenPrice) + allServicePrices; //Расчет полной суммы
 }
 
 function getTitle() {
@@ -84,7 +84,7 @@ function getServicePercentPrices() {
 
 asking();
 allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice(screenPrice, allServicePrices);
+fullPrice = getFullPrice();
 servicePercentPrice = getServicePercentPrices();
 title = getTitle();
 
@@ -97,8 +97,11 @@ console.log("allServicePrices", allServicePrices);
 console.log(screens.split()); // Выводим в консоль строку в виде массива
 console.log(getRollbackMessage(fullPrice)); // Выводим скидку в зависимости от указанной суммы
 console.log(
-  "Стоимость за вычетом процента отката посреднику: " +
-    getServicePercentPrices() +
+  "Стоимость верстки экранов " +
+    screenPrice +
+    " рублей " +
+    "и" +
+    " Стоиомсть разработки сайта " +
+    fullPrice +
     " рублей"
-); // Вывод стоимости за вычетом процента отката посреднику
-console.log(getTitle(title)); // Вывод названия проекта с учетом форматирования текста
+);
