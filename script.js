@@ -1,52 +1,57 @@
 "use strict"; //Строгий режим
 
-const title = prompt("Как называется ваш проект?", "JS21"); //Всплывающее окно с вопросом и заносим ответ
+function letsPlay() {
+  function play() {
+    let doYouWannaPlay = confirm("Ты хочешь сыграть в УГАДАЙ ЧИСЛО?");
 
-const screens = prompt(
-  "Какие типы экранов нужно разработать?",
-  "Простые, Сложные, Интерактивные"
-); // Всплывающее окно с вопросом и варианты ответа, заносим ответ в переменную
+    if (doYouWannaPlay === true) {
+      const сheck = (num) => {
+        function restartGame() {
+          const whatNum = +prompt("Угадай число от 1 до 100");
 
-const screenPrice = +prompt("Сколько будет стоить данная работа?", "12000"); // Всплывающее окно с вопросом с примером
+          switch (true) {
+            case whatNum > num:
+              alert("Загаданное число меньше");
+              return restartGame();
+            case whatNum < num:
+              alert("Загаданное число больше");
+              return restartGame();
+            case whatNum === num:
+              alert("МОЛОДЕЦ, ПРЯМО В ТОЧКУ!!!");
+              break;
+            case whatNum != Number:
+              alert("Введи число, дурень!");
+              return restartGame();
 
-const adaptive = confirm("Нужен ли адаптив на сайте?"); // Всплывающее окно с вариантом ответа
-
-const service1 = prompt("Какой дополнительный тип услуги нужен?"); // Всплывающее окно с вопросом
-const servicePrice1 = +prompt("Сколько это будет стоить?"); // Всплывающее окно с вопросом в виде числа
-const service3 = prompt("Какой дополнительный тип услуги нужен?"); // Всплывающее окно с вопросом
-const servicePrice2 = +prompt("Сколько это будет стоить?"); // Всплывающее окно с вопросом в виде числа
-
-const fullPrice = Number(screenPrice + servicePrice1 + servicePrice2); // Сложение всех полученных чисел из ответов
-
-const rollback = 26; // Процент отката
-
-const servicePercentPrice = Math.ceil(fullPrice - fullPrice * (rollback / 100));
-console.log(
-  "С учетом процента отката за работу: " + servicePercentPrice + " рублей"
-); // Выводим в консоль стоимость с учетом процента отката и округляя в большую сторону
-
-switch (true) {
-  case fullPrice > 30000: // Если итоговая стоимость больше 30000, то дарим скидку 10%
-    console.log("Дарим скидку 10%");
-    break;
-  case fullPrice > 15000: // Если итоговая стоимость больше 15000, то дарим скидку 5%
-    console.log("Дарим скидку 5%");
-    break;
-  case fullPrice > 0: // Если итоговая стоимость больше 0, то скидка не предусмотрена
-    console.log("Скидка не предусмотрена :(");
-    break;
-
-  default:
-  case fullPrice < 0: // Если итоговая стоимость меньше 0, то возвращаем ошибку
-    console.log("Что-то пошло не так T_T");
+            default:
+            case whatNum === null:
+              alert("Все, наигрался, спокойной ночи!");
+              break;
+          }
+        }
+        restartGame();
+      };
+      сheck(26);
+    } else if (doYouWannaPlay === false) {
+      alert("Ну не хочешь играть, твое право:(");
+    }
+  }
+  play();
 }
 
-// console.log(typeof title);
-// console.log(screens.length);
-// console.log(rollback);
-// console.log(typeof fullPrice);
-// console.log(typeof adaptive);
-// console.log("Стоимость верстки экранов " + screenPrice + " рублей");
-// console.log("Стоимость создания сайта " + fullPrice + " рублей");
-// console.log(screens.toLowerCase(), screens.split(" "));
-// console.log(fullPrice * (rollback / 100));
+letsPlay();
+
+// if (whatNum > num) {
+//   alert("Загаданное число меньше");
+//   restartGame();
+// } else if (whatNum < num) {
+//   alert("Загаданное число больше");
+//   restartGame();
+// } else if (whatNum == num) {
+//   alert("МОЛОДЕЦ, ПРЯМО В ТОЧКУ!!!");
+// } else if (whatNum != Number) {
+//   alert("Введи число, дурень!");
+//   restartGame();
+// } else if (whatNum == null) {
+//   alert("Все, наигрался, спокойной ночи!");
+// }
