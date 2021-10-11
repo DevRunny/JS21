@@ -14,12 +14,16 @@ const appData = {
   start: function () {
     appData.asking();
 
-    appData.allServicePrices = appData.getAllServicePrices();
-    appData.fullPrice = appData.getFullPrice();
-    appData.servicePercentPrice = appData.getServicePercentPrices();
-    appData.title = appData.getTitle();
+    appData.getAllServicePrices();
+    appData.getFullPrice();
+    appData.getServicePercentPrices();
+    appData.getTitle();
 
     this.logger();
+  },
+
+  isNumber: function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
   },
 
   asking: function () {
@@ -36,9 +40,6 @@ const appData = {
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
   },
 
-  isNumber: function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num);
-  },
   getAllServicePrices: function () {
     let sum = 0;
 
@@ -57,17 +58,17 @@ const appData = {
       sum += +value;
     }
 
-    return sum;
+    appData.allServicePrices = sum;
   },
   getFullPrice: function () {
-    return +appData.screenPrice + appData.allServicePrices; //Расчет полной суммы
+    appData.fullPrice = +appData.screenPrice + appData.allServicePrices; //Расчет полной суммы
   },
   getTitle: function () {
     let cutTitle = appData.title.trim(); //Удаление пробелов
-    return cutTitle[0].toUpperCase() + cutTitle.slice(1); //Заглавная буква с первого знака
+    appData.title = cutTitle[0].toUpperCase() + cutTitle.slice(1); //Заглавная буква с первого знака
   },
   getServicePercentPrices: function () {
-    return Math.ceil(
+    appData.servicePercentPrice = Math.ceil(
       appData.fullPrice - appData.fullPrice * (appData.rollback / 100)
     ); // Функция возвращает стоимость за вычетом процента отката
   },
