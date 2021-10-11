@@ -6,7 +6,9 @@ const getRandomInt = (min, max) => {
 
 function letsPlay() {
   function play() {
-    let doYouWannaPlay = confirm("Ты хочешь сыграть в УГАДАЙ ЧИСЛО?");
+    let doYouWannaPlay = confirm(
+      "Ты хочешь сыграть в УГАДАЙ ЧИСЛО? \n У тебя есть 10 попыток"
+    );
 
     if (doYouWannaPlay === true) {
       const сheck = (num) => {
@@ -27,7 +29,14 @@ function letsPlay() {
             alert("Загаданное число больше");
             restartGame();
           } else if (whatNum == num && isNumber(whatNum)) {
-            alert("МОЛОДЕЦ, ПРЯМО В ТОЧКУ!!!");
+            let again = confirm(
+              "МОЛОДЕЦ, ПРЯМО В ТОЧКУ!!! \n Хочешь еще раз сыграть?"
+            );
+            if (again === true) {
+              restartGame();
+            } else if (again === false) {
+              return;
+            }
           } else if (whatNum === null) {
             return alert("Все, наигрался, спокойной ночи!");
           } else if (!isNumber(whatNum)) {
