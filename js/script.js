@@ -1,4 +1,33 @@
 "use strict"; //Строгий режим
+const title = document.getElementsByTagName("h1");
+const btnStart = document.getElementsByClassName("handler_btn");
+const btnReset = document.getElementsByClassName("handler_btn");
+const btnPlus = document.querySelector(".screen-btn");
+const otherItems = document.querySelectorAll(".other-items");
+const percent = document.querySelectorAll(".percent");
+const number = document.querySelectorAll(".number");
+const range = document.querySelector("div.rollback input");
+const span = document.querySelector("div.rollback span");
+const totalInput = document.getElementsByClassName("total-input");
+let screenQuery = document.querySelectorAll(".screen");
+
+console.log(title.title.textContent);
+console.log(btnStart[0]);
+console.log(btnReset[1]);
+console.log(btnPlus);
+console.log(otherItems);
+console.log(percent);
+console.log(number);
+console.log(range);
+console.log(span);
+console.log(
+  totalInput[0],
+  totalInput[1],
+  totalInput[2],
+  totalInput[3],
+  totalInput[4]
+);
+console.log(screenQuery);
 
 const appData = {
   title: "",
