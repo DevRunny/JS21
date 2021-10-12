@@ -11,6 +11,11 @@ const span = document.querySelector("div.rollback span");
 const totalInput = document.getElementsByClassName("total-input");
 let screenQuery = document.querySelectorAll(".screen");
 
+let index;
+for (index = 0; index < totalInput.length; ++index) {
+  console.log(totalInput[index]);
+}
+
 console.log(title.title.textContent);
 console.log(btnStart[0]);
 console.log(btnReset[1]);
@@ -20,13 +25,6 @@ console.log(percent);
 console.log(number);
 console.log(range);
 console.log(span);
-console.log(
-  totalInput[0],
-  totalInput[1],
-  totalInput[2],
-  totalInput[3],
-  totalInput[4]
-);
 console.log(screenQuery);
 
 const appData = {
