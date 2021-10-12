@@ -1,29 +1,33 @@
-"use strict"; //Строгий режим
+"use strict";
+const week = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
+const day = document.getElementById("week"); // Получаем div куда всё будем вставлять
+const todayDay = new Date();
 
-const arr = ["243", "568", "25", "49", "19", "85", "485"];
-
-arr.forEach(function (arrNum) {
-  if (arrNum.startsWith("2") || arrNum.startsWith("4")) {
-    console.log(Number(arrNum));
-  }
-});
-
-let num = 100;
-
-const primeNumbers = () => {
-  const scrOut = [];
-  const primeNum = [];
-
-  for (let i = 2; i <= num; i++) {
-    if (!scrOut[i]) {
-      primeNum.push("Делитель этого числа: 1 и " + i);
-      for (let j = i * 2; j <= num; j += i) {
-        scrOut[j] = true;
-      }
+const days = () => {
+  week.forEach((item, i) => {
+    let newdiv = document.createElement("div"); // Для каждого элемента week создаём div
+    if (i === +todayDay.getDay() - 1) {
+      // Если текущий день недели то от номера текущей даты отнимаем единицу, так как массив у нас начинается с нуля
+      console.log(todayDay.getDay());
+      newdiv.classList.add("today"); // Добавляем класс (делаем жирным)
+      newdiv.textContent = week[i]; // Вставляем текст
     }
-  }
-
-  return primeNum.join("\n");
+    if (item == "Суббота" || item == "Воскресенье") {
+      // Если выходные то
+      newdiv.classList.add("italic"); // Делаем дополнительно курсивом (Даже если уже жирным выделено)
+      newdiv.textContent = week[i]; // Вставляем текст
+    } else {
+      newdiv.textContent = week[i]; // Если не текущий день и не выходные, то просто вставляем текст без стилей
+    }
+    day.appendChild(newdiv); // Добавляем новый див в div @day
+  });
 };
-
-console.log(primeNumbers());
+days(); // Вызываем функцию;
