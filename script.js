@@ -41,9 +41,6 @@ const sortChapters = () => {
 };
 
 const addChapter = () => {
-  let newLi = document.createElement("li");
-  newLi.innerHTML = "Глава 8: За пределами ES6";
-
   bookSixChapters[8].insertAdjacentHTML(
     "afterend",
     "<li>Глава 8: За пределами ES6</li>"
