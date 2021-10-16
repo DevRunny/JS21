@@ -31,25 +31,24 @@ const appData = {
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
-  checkInputs: function (event) {
-    if (
-      screens[0].querySelector("input").value === "" ||
-      screens[0].querySelector("select").value === ""
-    ) {
-      btnStart.disabled = true;
-    } else if (event.type === "change") {
-      btnStart.disabled = false;
-    }
+  checkInputs: function () {
+    screens.forEach(function (item) {
+      const input = item.querySelector(".screen input");
+      const select = item.querySelector(".screen select");
+
+      input.addEventListener("change", appData.checkInputs);
+      select.addEventListener("change", appData.checkInputs);
+
+      if (input.value === "" || select.selectedIndex === 0) {
+        btnStart.disabled = true;
+      } else {
+        btnStart.disabled = false;
+      }
+    });
   },
+
   init: function () {
     appData.addTitle();
-
-    screens[0]
-      .querySelector("input")
-      .addEventListener("change", appData.checkInputs);
-    screens[0]
-      .querySelector("select")
-      .addEventListener("change", appData.checkInputs);
 
     appData.checkInputs();
 
