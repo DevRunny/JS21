@@ -17,8 +17,6 @@ const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
 let screens = document.querySelectorAll(".screen");
-let input = document.querySelectorAll(".screen input");
-let select = document.querySelectorAll(".screen select");
 
 const appData = {
   title: "",
