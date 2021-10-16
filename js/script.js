@@ -17,6 +17,8 @@ const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
 let screens = document.querySelectorAll(".screen");
+let input = document.querySelectorAll(".screen input");
+let select = document.querySelectorAll(".screen select");
 
 const appData = {
   title: "",
@@ -31,19 +33,28 @@ const appData = {
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
+  checkInputs: function (event) {
+    if (
+      screens[0].querySelector("input").value === "" ||
+      screens[0].querySelector("select").value === ""
+    ) {
+      btnStart.disabled = true;
+    } else if (event.type === "change") {
+      btnStart.disabled = false;
+    }
+  },
   init: function () {
     appData.addTitle();
 
-    setInterval(() => {
-      if (
-        screens[0].querySelector("select").value === 0 ||
-        screens[0].querySelector("input").value === ""
-      ) {
-        btnStart.disabled = true;
-      } else {
-        btnStart.disabled = false;
-      }
-    }, 100);
+    screens[0]
+      .querySelector("input")
+      .addEventListener("change", appData.checkInputs);
+    screens[0]
+      .querySelector("select")
+      .addEventListener("change", appData.checkInputs);
+
+    appData.checkInputs();
+
     btnStart.addEventListener("click", appData.start);
     btnPlus.addEventListener("click", appData.addScreenBlock);
 
@@ -52,6 +63,7 @@ const appData = {
       appData.rollback = event.target.value;
     });
   },
+
   addTitle: function () {
     document.title = title.textContent;
   },
