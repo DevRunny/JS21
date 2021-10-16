@@ -34,8 +34,17 @@ const appData = {
   init: function () {
     appData.addTitle();
 
+    setInterval(() => {
+      if (
+        screens[0].querySelector("select").value === 0 ||
+        screens[0].querySelector("input").value === ""
+      ) {
+        btnStart.disabled = true;
+      } else {
+        btnStart.disabled = false;
+      }
+    }, 100);
     btnStart.addEventListener("click", appData.start);
-
     btnPlus.addEventListener("click", appData.addScreenBlock);
 
     inputRange.addEventListener("input", function (event) {
