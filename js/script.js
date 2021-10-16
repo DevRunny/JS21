@@ -32,27 +32,34 @@ const appData = {
   servicesPercent: {},
   servicesNumber: {},
   checkInputs: function () {
+    screens = document.querySelectorAll(".screen");
+
     screens.forEach(function (item) {
       const input = item.querySelector(".screen input");
       const select = item.querySelector(".screen select");
 
       input.addEventListener("change", appData.checkInputs);
       select.addEventListener("change", appData.checkInputs);
-
-      if (input.value === "" || select.selectedIndex === 0) {
+    });
+    for (let i = 0; i < screens.length; i++) {
+      if (
+        screens[i].querySelector("select").selectedIndex === 0 ||
+        screens[i].querySelector("input").value === ""
+      ) {
         btnStart.disabled = true;
+        break;
       } else {
         btnStart.disabled = false;
       }
-    });
+    }
   },
 
   init: function () {
     appData.addTitle();
 
     appData.checkInputs();
-
     btnStart.addEventListener("click", appData.start);
+
     btnPlus.addEventListener("click", appData.addScreenBlock);
 
     inputRange.addEventListener("input", function (event) {
