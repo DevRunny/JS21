@@ -51,13 +51,10 @@ const render = function () {
 };
 
 const checkData = () => {
-  if (toDoData.length !== 0) {
-    render();
-  } else if (localStorage.length >= 1) {
-    toDoData = localStorage.getItem("todoList");
-    toDoData = JSON.parse(toDoData);
-    render();
-  }
+  toDoData = localStorage.getItem("todoList")
+    ? JSON.parse(localStorage.getItem("todoList"))
+    : [];
+  render();
 };
 
 todoControl.addEventListener("submit", function (event) {
