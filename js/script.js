@@ -50,13 +50,15 @@ const render = function () {
   });
 };
 
-if (toDoData.length !== 0) {
-  render();
-} else if (localStorage.length >= 1) {
-  toDoData = localStorage.getItem("todoList");
-  toDoData = JSON.parse(toDoData);
-  render();
-}
+const checkData = () => {
+  if (toDoData.length !== 0) {
+    render();
+  } else if (localStorage.length >= 1) {
+    toDoData = localStorage.getItem("todoList");
+    toDoData = JSON.parse(toDoData);
+    render();
+  }
+};
 
 todoControl.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -75,3 +77,4 @@ todoControl.addEventListener("submit", function (event) {
     render();
   }
 });
+checkData();
