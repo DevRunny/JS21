@@ -16,8 +16,6 @@ const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
-const cmsOpen = document.querySelectorAll(".cms");
-
 let screens = document.querySelectorAll(".screen");
 
 const appData = {
@@ -125,9 +123,16 @@ const appData = {
   },
 
   checkButtons: function () {
-    screens = document.querySelectorAll(".screen");
+    document.querySelectorAll("input[type=checkbox]").forEach((item) => {
+      if (appData.fullPrice != 0) {
+        item.disabled = true;
+      } else {
+        item.disabled = false;
+        item.checked = false;
+      }
+    });
 
-    screens.forEach((screen) => {
+    document.querySelectorAll(".screen").forEach((screen) => {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
 
@@ -138,39 +143,7 @@ const appData = {
         select.disabled = false;
         select.value = "";
         input.disabled = false;
-        input.value = 0;
-      }
-    });
-
-    otherItemsPercent.forEach((item) => {
-      const check = item.querySelector("input[type=checkbox]");
-
-      if (appData.fullPrice != 0) {
-        check.disabled = true;
-      } else {
-        check.disabled = false;
-        check.checked = false;
-      }
-    });
-    otherItemsNumber.forEach((item) => {
-      const check = item.querySelector("input[type=checkbox]");
-
-      if (appData.fullPrice != 0) {
-        check.disabled = true;
-      } else {
-        check.disabled = false;
-        check.checked = false;
-      }
-    });
-
-    cmsOpen.forEach((item) => {
-      const check = item.querySelector("input[type=checkbox]");
-
-      if (appData.fullPrice != 0) {
-        check.disabled = true;
-      } else {
-        check.disabled = false;
-        check.checked = false;
+        input.value = "";
       }
     });
 
