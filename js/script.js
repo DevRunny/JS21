@@ -16,6 +16,8 @@ const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
+const cmsOpen = document.querySelectorAll(".cms");
+
 let screens = document.querySelectorAll(".screen");
 
 const appData = {
@@ -58,6 +60,7 @@ const appData = {
     this.addTitle();
 
     this.checkInputs();
+
     btnStart.addEventListener("click", this.start);
     btnReset.addEventListener("click", this.reset);
 
@@ -81,17 +84,105 @@ const appData = {
 
     appData.showResult();
 
+    appData.checkButtons();
+
     btnStart.style.display = "none";
-    btnReset.style.display = "inline";
+    btnReset.style.display = "";
   },
 
   reset: function () {
-    btnStart.style.display = "inline";
+    btnStart.style.display = "";
     btnReset.style.display = "none";
+
+    inputRange.disabled = false;
+    btnPlus.disabled = false;
+
+    appData.screens = [];
+    appData.screenPrice = 0;
+    appData.screenCount = 0;
+    appData.adaptive = true;
+    appData.rollback = 0;
+    appData.servicePricesPercent = 0;
+    appData.servicePricesNumber = 0;
+    appData.fullPrice = 0;
+    appData.servicePercentPrice = 0;
+    appData.servicesPercent = {};
+    appData.servicesNumber = {};
+
+    total.value = 0;
+    totalCount.value = 0;
+    totalCountOther.value = 0;
+    fullTotalCount.value = 0;
+    totalCountRollback.value = 0;
+
+    document.querySelectorAll(".clone-screen").forEach((item) => item.remove());
+
+    appData.checkButtons();
   },
 
   isString: function (str) {
     return str.length === 0 || str == Number.parseFloat(str, Infinity);
+  },
+
+  checkButtons: function () {
+    screens = document.querySelectorAll(".screen");
+
+    screens.forEach((screen) => {
+      const select = screen.querySelector("select");
+      const input = screen.querySelector("input");
+
+      if (appData.fullPrice != 0) {
+        select.disabled = true;
+        input.disabled = true;
+      } else {
+        select.disabled = false;
+        select.value = "";
+        input.disabled = false;
+        input.value = 0;
+      }
+    });
+
+    otherItemsPercent.forEach((item) => {
+      const check = item.querySelector("input[type=checkbox]");
+
+      if (appData.fullPrice != 0) {
+        check.disabled = true;
+      } else {
+        check.disabled = false;
+        check.checked = false;
+      }
+    });
+    otherItemsNumber.forEach((item) => {
+      const check = item.querySelector("input[type=checkbox]");
+
+      if (appData.fullPrice != 0) {
+        check.disabled = true;
+      } else {
+        check.disabled = false;
+        check.checked = false;
+      }
+    });
+
+    cmsOpen.forEach((item) => {
+      const check = item.querySelector("input[type=checkbox]");
+
+      if (appData.fullPrice != 0) {
+        check.disabled = true;
+      } else {
+        check.disabled = false;
+        check.checked = false;
+      }
+    });
+
+    if (appData.fullPrice != 0) {
+      inputRange.disabled = true;
+      btnPlus.disabled = true;
+    } else {
+      inputRange.disabled = false;
+      inputRange.value = 0;
+      inputRangeValue.textContent = inputRange.value + "%";
+      btnPlus.disabled = false;
+    }
   },
 
   showResult: function () {
@@ -144,6 +235,7 @@ const appData = {
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
     screens[screens.length - 1].after(cloneScreen);
+    cloneScreen.classList.add("clone-screen");
   },
 
   addPrices: function () {
@@ -172,13 +264,11 @@ const appData = {
   },
 
   logger: function () {
-    console.log(this.screens);
-    console.dir(btnStart);
+    // console.log(this.screens);
     // console.log(appData.fullPrice);
     // console.log(appData.servicePercentPrice);
     // console.log(appData);
     // console.log(appData.screens);
-
     // for (let key in appData) {
     //   console.log(key + ": " + appData[key]);
     // }
