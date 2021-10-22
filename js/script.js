@@ -34,6 +34,7 @@ const appData = {
   init() {
     this.addTitle();
 
+    this.checkInputs();
     btnStart.addEventListener("click", this.start.bind(appData));
     btnReset.addEventListener("click", this.reset.bind(appData));
 
@@ -43,8 +44,6 @@ const appData = {
       inputRangeValue.textContent = event.target.value + "%";
       this.rollback = event.target.value;
     });
-
-    this.checkInputs();
   },
 
   addTitle() {
@@ -58,6 +57,7 @@ const appData = {
     this.showResult();
     this.checkButtons();
     this.logger();
+    this.checkInputs();
 
     btnStart.style.display = "none";
     btnReset.style.display = "";
@@ -91,6 +91,7 @@ const appData = {
     document.querySelectorAll(".clone-screen").forEach((item) => item.remove());
 
     this.checkButtons();
+    this.checkInputs();
   },
 
   checkInputs() {
