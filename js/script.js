@@ -33,6 +33,7 @@ const appData = {
   servicesNumber: {},
   init() {
     this.addTitle();
+    this.checkInputs();
 
     btnStart.addEventListener("click", this.start.bind(appData));
     btnReset.addEventListener("click", this.reset.bind(appData));
@@ -43,7 +44,6 @@ const appData = {
       inputRangeValue.textContent = event.target.value + "%";
       this.rollback = event.target.value;
     });
-    this.checkInputs();
   },
 
   addTitle() {
@@ -104,6 +104,7 @@ const appData = {
       input.addEventListener("change", this.checkInputs);
       select.addEventListener("change", this.checkInputs);
     });
+
     for (let i = 0; i < screens.length; i++) {
       if (
         screens[i].querySelector("select").selectedIndex === 0 ||
@@ -204,6 +205,7 @@ const appData = {
     const cloneScreen = screens[0].cloneNode(true);
     screens[screens.length - 1].after(cloneScreen);
     cloneScreen.classList.add("clone-screen");
+    this.checkInputs();
   },
 
   addPrices() {
