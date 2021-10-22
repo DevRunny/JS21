@@ -31,43 +31,20 @@ const appData = {
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
-  checkInputs() {
-    screens = document.querySelectorAll(".screen");
-
-    screens.forEach((item) => {
-      const input = item.querySelector(".screen input");
-      const select = item.querySelector(".screen select");
-
-      input.addEventListener("change", this.checkInputs);
-      select.addEventListener("change", this.checkInputs);
-    });
-    for (let i = 0; i < screens.length; i++) {
-      if (
-        screens[i].querySelector("select").selectedIndex === 0 ||
-        screens[i].querySelector("input").value === ""
-      ) {
-        btnStart.disabled = true;
-        break;
-      } else {
-        btnStart.disabled = false;
-      }
-    }
-  },
-
   init() {
     this.addTitle();
-
-    this.checkInputs();
 
     btnStart.addEventListener("click", this.start.bind(appData));
     btnReset.addEventListener("click", this.reset.bind(appData));
 
-    btnPlus.addEventListener("click", this.addScreenBlock);
+    btnPlus.addEventListener("click", this.addScreenBlock.bind(appData));
 
     inputRange.addEventListener("input", (event) => {
       inputRangeValue.textContent = event.target.value + "%";
       this.rollback = event.target.value;
     });
+
+    this.checkInputs();
   },
 
   addTitle() {
@@ -116,8 +93,27 @@ const appData = {
     this.checkButtons();
   },
 
-  isString: function (str) {
-    return str.length === 0 || str == Number.parseFloat(str, Infinity);
+  checkInputs() {
+    screens = document.querySelectorAll(".screen");
+
+    screens.forEach((item) => {
+      const input = item.querySelector(".screen input");
+      const select = item.querySelector(".screen select");
+
+      input.addEventListener("change", this.checkInputs);
+      select.addEventListener("change", this.checkInputs);
+    });
+    for (let i = 0; i < screens.length; i++) {
+      if (
+        screens[i].querySelector("select").selectedIndex === 0 ||
+        screens[i].querySelector("input").value === ""
+      ) {
+        btnStart.disabled = true;
+        break;
+      } else {
+        btnStart.disabled = false;
+      }
+    }
   },
 
   checkButtons() {
