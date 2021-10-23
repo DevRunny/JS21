@@ -1,21 +1,21 @@
 "use strict";
 
-// const Person = function (name) {
-//   this.name = name;
-// };
+const input = document.querySelector("input");
+const btnAdd = document.querySelector("button");
 
-// Person.prototype.sayHello = function () {
-//   console.log("Привет, меня зовут " + this.name);
-// };
+const DomElement = function (selector, height, width, bg, fontSize) {
+  this.selector = selector;
+  this.height = height;
+  this.width = width;
+  this.bg = bg;
+  this.fontSize = fontSize;
+};
 
-// const Student = function (name, role) {
-//   Person.call(this, name);
-//   this.role = role;
-// };
+DomElement.prototype.selectorChange = function () {};
 
-// Student.prototype = Object.create(Person.prototype);
-// Student.prototype.constructor = Student;
+let element = new DomElement(".block", 200, 300, "white", 14);
 
-// const newStudent = new Student("Max", "student");
+element.selectorChange();
 
-// console.log(newStudent);
+console.log(element);
+console.log(element instanceof DomElement);
