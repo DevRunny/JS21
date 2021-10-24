@@ -9,33 +9,33 @@ const DomElement = function (selector, height, width, bg, fontSize) {
   this.width = width + "px";
   this.bg = bg;
   this.fontSize = fontSize + "px";
+};
 
-  this.creater = function () {
-    if (this.selector[0] === ".") {
-      elem = document.createElement("div");
-      elem.classList.add(this.selector.slice(1));
-      elem.style.display = "flex";
-      elem.style.justifyContent = "center";
-      elem.style.alignItems = "center";
-      elem.style.margin = "30px";
-      elem.style.textTransform = "uppercase";
-    } else if (this.selector[0] === "#") {
-      elem = document.createElement("p");
-      elem.id = this.selector.slice(1);
-      elem.style.display = "flex";
-      elem.style.justifyContent = "center";
-      elem.style.alignItems = "center";
-      elem.style.margin = "30px";
-      elem.style.textTransform = "lowercase";
-    }
+DomElement.prototype.creater = function () {
+  if (this.selector[0] === ".") {
+    elem = document.createElement("div");
+    elem.classList.add(this.selector.slice(1));
+    elem.style.display = "flex";
+    elem.style.justifyContent = "center";
+    elem.style.alignItems = "center";
+    elem.style.margin = "30px";
+    elem.style.textTransform = "uppercase";
+  } else if (this.selector[0] === "#") {
+    elem = document.createElement("p");
+    elem.id = this.selector.slice(1);
+    elem.style.display = "flex";
+    elem.style.justifyContent = "center";
+    elem.style.alignItems = "center";
+    elem.style.margin = "30px";
+    elem.style.textTransform = "lowercase";
+  }
 
-    elem.style.height = this.height;
-    elem.style.width = this.width;
-    elem.style.background = this.bg;
-    elem.style.fontSize = this.fontSize;
+  elem.style.height = this.height;
+  elem.style.width = this.width;
+  elem.style.background = this.bg;
+  elem.style.fontSize = this.fontSize;
 
-    body.append(elem);
-  };
+  body.append(elem);
 };
 
 DomElement.prototype.addText = function () {
